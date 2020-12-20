@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "358638395370",
+    "project_id": "covid-vijay-app",
+    "storage_bucket": "covid-vijay-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:358638395370:android:7d817f19ef7f0f376edc93",
+        "android_client_info": {
+          "package_name": "com.example.covid_vijay_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "358638395370-ouoincvosq0tj9vs8ngio6uj3n12omo2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjEGssRHsaTaBXb5nSkm3eJ4pv_LAHyiY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "358638395370-ouoincvosq0tj9vs8ngio6uj3n12omo2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
