@@ -1,6 +1,6 @@
-# covid_vijay_app
+# Covid Vijay App
 
-A new Flutter project.
+An app to track covid19 vaccination stats
 
 ## Getting Started
 
