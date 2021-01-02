@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Covid19-Vijay-App',
       theme: ThemeData(
+        primaryColor: Color(0xff02AE8B),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: 

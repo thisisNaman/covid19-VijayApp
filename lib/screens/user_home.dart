@@ -1,4 +1,5 @@
 import 'package:covid_vijay_app/constants.dart';
+import 'package:covid_vijay_app/screens/report_issue.dart';
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -24,8 +25,7 @@ class _UserHomeState extends State<UserHome> {
 
   @override
   void dispose() {
-    // Clean up the controller when the widget is removed from the
-    // widget tree.
+    
     _textEditingController.dispose();
     super.dispose();
   }
@@ -135,11 +135,11 @@ class _UserHomeState extends State<UserHome> {
                           DisplayVaccinationStatus.routeName,
                           arguments: {'maindata': requireddata});
                     } else {
-                      _showAlert(context, 'Invalid Aadhar number');
+                      // _showAlert(context, 'Invalid Aadhar number');
                     }
                   }
                 } catch (e) {
-                  _showAlert(context, e);
+                  // _showAlert(context, e);
                 }
               },
               child: new Container(
@@ -179,6 +179,13 @@ class _UserHomeState extends State<UserHome> {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton.extended(
+        backgroundColor: Color(0xff02AE8B),
+        onPressed: (){
+          Navigator.push(context, MaterialPageRoute(builder: (conetxt)=>ReportIssue()));
+        }, label: Text('Report an Issue'),
+        icon: Icon(Icons.add_alert),
+        ),
     );
   }
 }
