@@ -33,6 +33,8 @@ dependencies:
   firebase_auth: "^0.18.0+1"
   cloud_firestore: "^0.14.0+2"
   pie_chart:
+  flutter_dialogflow: ^0.1.2
+  bubble: ^1.1.9+1
 
   http: ^0.12.2
 
@@ -55,6 +57,7 @@ flutter:
   assets:
     - assets/images/
     - assets/img/
+    - assets/cred.json
     
 
   # An image asset can refer to one or more resolution-specific "variants", see
