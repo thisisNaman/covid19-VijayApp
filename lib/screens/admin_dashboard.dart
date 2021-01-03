@@ -1,5 +1,6 @@
 import 'package:covid_vijay_app/screens/admin_login.dart';
 import 'package:covid_vijay_app/constants.dart';
+import 'package:covid_vijay_app/screens/chatbot.dart';
 import 'package:covid_vijay_app/screens/onboarding.dart';
 import 'package:covid_vijay_app/services/auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -413,6 +414,11 @@ class _AdminDashboardState extends State<AdminDashboard> {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton.extended(onPressed: () {
+        Navigator.push(context, MaterialPageRoute(
+          builder:(context)=>HomePageDialogflow()
+        ));
+      }, label: Text('Help')),
     );
   }
 }
