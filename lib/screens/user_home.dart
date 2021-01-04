@@ -25,7 +25,6 @@ class _UserHomeState extends State<UserHome> {
 
   @override
   void dispose() {
-    
     _textEditingController.dispose();
     super.dispose();
   }
@@ -181,33 +180,35 @@ class _UserHomeState extends State<UserHome> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         backgroundColor: Color(0xff02AE8B),
-        onPressed: (){
-          Navigator.push(context, MaterialPageRoute(builder: (conetxt)=>ReportIssue()));
-        }, label: Text('Report an Issue'),
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (conetxt) => ReportIssue()));
+        },
+        label: Text('Report an Issue'),
         icon: Icon(Icons.add_alert),
-        ),
+      ),
     );
   }
 }
 
-void _showAlert(BuildContext context, String text) {
-  showDialog(
-    context: context,
-    builder: (context) => Container(
-      child: AlertDialog(
-        title: Text("Error while Signing In"),
-        content: Text(text),
-        actions: [
-          RaisedButton(
-            child: Text('Go Back'),
-            color: Colors.blue,
-            elevation: 20,
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-        ],
-      ),
-    ),
-  );
-}
+// void _showAlert(BuildContext context, String text) {
+//   showDialog(
+//     context: context,
+//     builder: (context) => Container(
+//       child: AlertDialog(
+//         title: Text("Error while Signing In"),
+//         content: Text(text),
+//         actions: [
+//           RaisedButton(
+//             child: Text('Go Back'),
+//             color: Colors.blue,
+//             elevation: 20,
+//             onPressed: () {
+//               Navigator.of(context).pop();
+//             },
+//           ),
+//         ],
+//       ),
+//     ),
+//   );
+// }
