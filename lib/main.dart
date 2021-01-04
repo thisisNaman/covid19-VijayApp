@@ -1,3 +1,4 @@
+import 'package:covid_vijay_app/screens/admin.dart';
 import 'package:covid_vijay_app/screens/onboarding.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: 
-       Onboarding(),
+       Admin(),
       debugShowCheckedModeBanner: false,
       routes: {
         DisplayVaccinationStatus.routeName: (context)=>DisplayVaccinationStatus(),

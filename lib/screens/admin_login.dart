@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:covid_vijay_app/screens/admin_dashboard.dart';
+import 'package:covid_vijay_app/screens/admin.dart';
 import 'package:covid_vijay_app/screens/onboarding.dart';
 import 'package:covid_vijay_app/services/auth.dart';
 import 'package:flutter/material.dart';
@@ -159,11 +159,11 @@ class _AdminLoginState extends State<AdminLogin> {
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => AdminDashboard(
-                              dataMap: {
-                                "vaccinated": vaccinated,
-                                "notvaccinated": notvaccinated,
-                              },
+                            builder: (context) => Admin(
+                              // dataMap: {
+                              //   "vaccinated": vaccinated,
+                              //   "notvaccinated": notvaccinated,
+                              // },
                             ),
                           ));
                     }
