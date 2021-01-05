@@ -2,6 +2,7 @@ import 'package:covid_vijay_app/screens/admin_login.dart';
 import 'package:covid_vijay_app/services/auth.dart';
 
 import 'package:flutter/material.dart';
+import 'package:charts_flutter/flutter.dart' as charts;
 
 class AdminDashboard extends StatefulWidget {
  final Map<String, double> dataMap;
@@ -150,53 +151,71 @@ class _AdminDashboardState extends State<AdminDashboard> {
                 ],
               ),
             ),
-            // Container(
-            //   decoration: BoxDecoration(
-            //     color: Colors.white,
-            //     borderRadius: BorderRadius.circular(20.0),
-            //   ),
-            //   padding: EdgeInsets.all(20.0),
-            //   child: Text(
-            //     'Looks like a lot of people are getting vaccinated',
-            //     style: GoogleFonts.varelaRound(
-            //         foreground: Paint()..shader = linearGradient,
-            //         fontSize: 20.0,
-            //         fontWeight: FontWeight.bold),
-            //   ),
-            // ),
-            // Container(
-            //   decoration: BoxDecoration(
-            //       color: Colors.white,
-            //       borderRadius: BorderRadius.circular(300),
-            //       boxShadow: [
-            //         BoxShadow(color: Colors.black26, blurRadius: 20.0)
-            //       ]),
-            //   child: PieChart(
-            //     dataMap: widget.dataMap,
-            //     animationDuration: Duration(milliseconds: 800),
-            //     chartLegendSpacing: 32,
-            //     chartRadius: MediaQuery.of(context).size.width + 4,
-            //     colorList: [Colors.blueAccent, Colors.red],
-            //     initialAngleInDegree: 0,
-            //     ringStrokeWidth: 32,
-            //     legendOptions: LegendOptions(
-            //       showLegendsInRow: false,
-            //       legendPosition: LegendPosition.right,
-            //       showLegends: true,
-            //       legendShape: BoxShape.circle,
-            //       legendTextStyle: TextStyle(
-            //         color: Colors.black,
-            //         fontWeight: FontWeight.bold,
-            //       ),
-            //     ),
-            //     chartValuesOptions: ChartValuesOptions(
-            //       showChartValueBackground: true,
-            //       showChartValues: true,
-            //       showChartValuesInPercentage: false,
-            //       showChartValuesOutside: false,
-            //     ),
-            //   ),
-            // ),
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              padding: EdgeInsets.all(20.0),
+              child: Text(
+                'Looks like a lot of people are getting vaccinated',
+                style: GoogleFonts.varelaRound(
+                    foreground: Paint()..shader = linearGradient,
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+        
+
+class SimpleLineChart extends StatelessWidget {
+  final List<charts.Series> seriesList;
+  final bool animate;
+
+  SimpleLineChart(this.seriesList, {this.animate});
+
+  /// Creates a [LineChart] with sample data and no transition.
+  factory SimpleLineChart.withSampleData() {
+    return new SimpleLineChart(
+      _createSampleData(),
+      // Disable animations for image tests.
+      animate: false,
+    );
+  }
+
+
+  @override
+  Widget build(BuildContext context) {
+    return new charts.LineChart(seriesList, animate: animate);
+  }
+
+  /// Create one series with sample hard coded data.
+  static List<charts.Series<LinearSales, int>> _createSampleData() {
+    final data = [
+      new LinearSales(0, 5),
+      new LinearSales(1, 25),
+      new LinearSales(2, 100),
+      new LinearSales(3, 75),
+    ];
+
+    return [
+      new charts.Series<LinearSales, int>(
+        id: 'Sales',
+        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
+        domainFn: (LinearSales sales, _) => sales.year,
+        measureFn: (LinearSales sales, _) => sales.sales,
+        data: data,
+      )
+    ];
+  }
+}
+
+/// Sample linear data type.
+class LinearSales {
+  final int year;
+  final int sales;
+
+  LinearSales(this.year, this.sales);
+}
             SizedBox(
               height: 50,
             ),
