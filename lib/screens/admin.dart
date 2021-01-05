@@ -2,6 +2,7 @@ import 'package:covid_vijay_app/screens/add_person.dart';
 import 'package:covid_vijay_app/screens/admin_dashboard.dart';
 import 'package:covid_vijay_app/screens/chatbot.dart';
 import 'package:covid_vijay_app/screens/update_vaccination_status.dart';
+import 'package:covid_vijay_app/screens/vaccines_dispatched.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -41,6 +42,7 @@ class _AdminState extends State<Admin> {
           AdminDashboard(),
           UpdateVaccinationStatus(),
           AddPerson(),
+          VaccinesDispatched(),
           HomePageDialogflow(),
         ],
         controller: pageController,
@@ -54,12 +56,13 @@ class _AdminState extends State<Admin> {
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home)),
           BottomNavigationBarItem(
-            icon: Icon(Icons.add_box),
+            icon: Icon(Icons.update_outlined),
           ),
           BottomNavigationBarItem(
               icon: Icon(
             Icons.add_a_photo,
           )),
+          BottomNavigationBarItem(icon: Icon(Icons.track_changes)),
           BottomNavigationBarItem(icon: Icon(Icons.help)),
         ],
       ),
