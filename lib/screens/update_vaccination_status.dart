@@ -13,6 +13,20 @@ class UpdateVaccinationStatus extends StatefulWidget {
 
 class _UpdateVaccinationStatusState extends State<UpdateVaccinationStatus> {
   TextEditingController _textEditingController;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    _textEditingController = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _textEditingController.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,7 +75,7 @@ class _UpdateVaccinationStatusState extends State<UpdateVaccinationStatus> {
                 controller: _textEditingController,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
-                  labelText: '   Enter the 10 digit Aadhar No.',
+                  labelText: '   Enter the 12 digit Aadhar No.',
                   labelStyle: GoogleFonts.varelaRound(
                     color: Colors.orange,
                   ),
@@ -97,9 +111,14 @@ class _UpdateVaccinationStatusState extends State<UpdateVaccinationStatus> {
                     print(_textEditingController.text);
                     var response;
                     var requiredata;
-                    var url = 'https://covid19-vaccine.herokuapp.com/api/';
+                    var url = 'http://192.168.1.6:8000/api/';
+                    String username = 'admin',
+                        password = 'admin';
+                    String basicAuth = 'Basic ' +
+                        base64Encode(utf8.encode('$username:$password'));
                     try {
-                      response = await http.get(url);
+
+                      response = await http.get(url,headers: {'authorization':basicAuth});
                       List Data = json.decode(response.body);
 
                       for (int i = 0; i < Data.length; i++) {
@@ -148,7 +167,7 @@ class _UpdateVaccinationStatusState extends State<UpdateVaccinationStatus> {
                     }
                     try {
                       response = await http.put(url,
-                          headers: {'Content-type': 'application/json'},
+                          headers: {'Content-type': 'application/json','authorization':basicAuth},
                           body: json.encode(requiredata));
                       print(response.body);
                     } catch (e) {

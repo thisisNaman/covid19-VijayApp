@@ -1,8 +1,9 @@
 import 'package:covid_vijay_app/screens/admin_login.dart';
 import 'package:covid_vijay_app/services/auth.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
+import '../constants.dart';
 
 class AdminDashboard extends StatefulWidget {
  final Map<String, double> dataMap;
@@ -165,20 +166,27 @@ class _AdminDashboardState extends State<AdminDashboard> {
                     fontWeight: FontWeight.bold),
               ),
             ),
+      ]
+    ),
+    ),
+    );
+  }
+}
+
         
 
 class SimpleLineChart extends StatelessWidget {
-  final List<charts.Series> seriesList;
-  final bool animate;
+    final List<charts.Series> seriesList;
+    final bool animate;
 
-  SimpleLineChart(this.seriesList, {this.animate});
+    SimpleLineChart(this.seriesList, {this.animate});
 
-  /// Creates a [LineChart] with sample data and no transition.
-  factory SimpleLineChart.withSampleData() {
+    /// Creates a [LineChart] with sample data and no transition.
+    factory SimpleLineChart.withSampleData() {
     return new SimpleLineChart(
-      _createSampleData(),
-      // Disable animations for image tests.
-      animate: false,
+    _createSampleData(),
+    // Disable animations for image tests.
+    animate: false,
     );
   }
 
@@ -216,17 +224,17 @@ class LinearSales {
 
   LinearSales(this.year, this.sales);
 }
-            SizedBox(
-              height: 50,
-            ),
-
-          ],
-        ),
-      ),
-      
-    );
-  }
-}
+//            SizedBox(
+//              height: 50,
+//            ),
+//
+//          ],
+//        ),
+//      ),
+//
+//    );
+//  }
+//}
 
 // void _showAlert(BuildContext context, String text) {
 //   showDialog(

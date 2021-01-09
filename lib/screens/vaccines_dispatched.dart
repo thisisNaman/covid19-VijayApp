@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 import '../constants.dart';
 
 class VaccinesDispatched extends StatefulWidget {
@@ -9,11 +10,36 @@ class VaccinesDispatched extends StatefulWidget {
 }
 
 class _VaccinesDispatchedState extends State<VaccinesDispatched> {
+
+  TextEditingController vaccines_dispatched,vaccines_usable,temperature,humidity;
+
+  @override
+  void initState()
+  {
+    vaccines_dispatched = TextEditingController();
+    vaccines_usable = TextEditingController();
+    temperature = TextEditingController();
+    humidity = TextEditingController();
+    super.initState();
+  }
+
+
+  @override
+  void dispose()
+  {
+    vaccines_usable.dispose();
+    vaccines_dispatched.dispose();
+    temperature.dispose();
+    humidity.dispose();
+    super.dispose();
+  }
+
+  String trafficDensity;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('VaccinesDispatched'),
+        title: Text('Vaccine Logistics Information'),
         centerTitle: true,
         elevation: 0,
       ),
@@ -40,6 +66,7 @@ class _VaccinesDispatchedState extends State<VaccinesDispatched> {
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
                   child: TextFormField(
+                    controller: vaccines_dispatched,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.format_list_numbered_sharp),
@@ -60,8 +87,10 @@ class _VaccinesDispatchedState extends State<VaccinesDispatched> {
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
                   child: TextFormField(
+                    controller: vaccines_usable,
+                    keyboardType: TextInputType.number,
                     decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.location_on),
+                      prefixIcon: Icon(Icons.check),
                       alignLabelWithHint: true,
                       fillColor: Colors.white,
                       filled: true,
@@ -70,7 +99,7 @@ class _VaccinesDispatchedState extends State<VaccinesDispatched> {
                           Radius.circular(12),
                         ),
                       ),
-                      labelText: 'Dispatched From',
+                      labelText: 'No. of vaccines which can be used',
                     ),
                   ),
                 ),
@@ -79,8 +108,10 @@ class _VaccinesDispatchedState extends State<VaccinesDispatched> {
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
                   child: TextFormField(
+                    controller: temperature,
+                    keyboardType: TextInputType.number,
                     decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.location_on_outlined),
+                      prefixIcon: Icon(Icons.texture),
                       alignLabelWithHint: true,
                       fillColor: Colors.white,
                       filled: true,
@@ -89,7 +120,7 @@ class _VaccinesDispatchedState extends State<VaccinesDispatched> {
                           Radius.circular(12),
                         ),
                       ),
-                      labelText: 'Dispatched To',
+                      labelText: 'Temperature',
                     ),
                   ),
                 ),
@@ -98,9 +129,10 @@ class _VaccinesDispatchedState extends State<VaccinesDispatched> {
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
                   child: TextFormField(
+                    controller: humidity,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.card_travel),
+                      prefixIcon: Icon(Icons.opacity),
                       alignLabelWithHint: true,
                       fillColor: Colors.white,
                       filled: true,
@@ -109,29 +141,95 @@ class _VaccinesDispatchedState extends State<VaccinesDispatched> {
                           Radius.circular(12),
                         ),
                       ),
-                      labelText: 'Vehicle Number',
+                      labelText: 'Humidity',
                     ),
                   ),
                 ),
-              ),
+              ),Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Icon(Icons.traffic),
+                    Text('Traffic Density',style: TextStyle(
+                      fontSize: 15,
+                    ),),
+                    SizedBox(width: 20,),
+                    DropdownButton(
+                      hint: Text('Select Traffic Density',style: TextStyle(
+                        fontSize: 15,
+                      ),),
+                      value: trafficDensity,
+                      onChanged: (value) {
+                        setState(() {
+                          trafficDensity = value;
+                        });
+                      },
+                      items: [
+                        DropdownMenuItem(child:
+                        Text('Low',style: TextStyle(
+                          fontSize: 15,
+                        ),),
+                          value: 'Low',),
+                        DropdownMenuItem(child:
+                        Text('Medium',style: TextStyle(
+                          fontSize: 15,
+                        ),),
+                          value: 'Medium',),
+                        DropdownMenuItem(child:
+                        Text('High',style: TextStyle(
+                          fontSize: 15,
+                        ),),
+                          value: 'High',),
+                      ],
+                    ),
+                  ],
+                )
+            ),
+
                  MaterialButton(
-                onPressed: () {
-                  showDialog(
-                      context: context,
-                      builder: (context) {
-                        return Dialog(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Container(
-                            height: 200,
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [Text('Vaccine Dispatch Status Updated!')],
+                onPressed: () async {
+                  try {
+                    var url = 'http://192.168.1.6:8000/api2/';
+                    String username = 'admin',
+                        password = 'admin';
+                    String basicAuth = 'Basic ' +
+                        base64Encode(utf8.encode('$username:$password'));
+                    Map data = {
+                      "No_vaccine_dispatched": vaccines_dispatched.text,
+                      "No_usable_vaccine": vaccines_usable.text,
+                      "Temperature": temperature.text,
+                      "Humidity": humidity.text,
+                      "traffic_density": trafficDensity
+                    };
+                    final response = await http.post(
+                        url, headers: {
+                      'authorization': basicAuth,
+                      "Content-Type": "application/json"
+                    }, body: json.encode(data));
+                    print(response.body);
+                    showDialog(
+                        context: context,
+                        builder: (context) {
+                          return Dialog(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
                             ),
-                          ),
-                        );
-                      });
+                            child: Container(
+                              height: 200,
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text('Vaccine Dispatch Status Updated!')
+                                ],
+                              ),
+                            ),
+                          );
+                        });
+                  }catch(e)
+                  {
+                    print(e);
+                  }
+
                 },
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12)),

@@ -37,6 +37,8 @@ dependencies:
   bubble: ^1.1.9+1
   image_picker:
   http: ^0.12.2
+  pie_chart:
+  charts_flutter: ^0.9.0
 
 dev_dependencies:
   flutter_test:
