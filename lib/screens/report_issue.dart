@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class ReportIssue extends StatefulWidget {
   @override
@@ -6,10 +8,30 @@ class ReportIssue extends StatefulWidget {
 }
 
 class _ReportIssueState extends State<ReportIssue> {
-  bool aVal = false;
-  bool bVal = false;
-  bool cVal = false;
-  bool dVal = false;
+
+  String painSeverity;
+  TextEditingController name,aadharNumber,description,age;
+
+  @override
+  void initState() {
+    super.initState();
+    name = TextEditingController();
+    aadharNumber = TextEditingController();
+    description = TextEditingController();
+    age = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+   name.dispose();
+   aadharNumber.dispose();
+   description.dispose();
+    super.dispose();
+  }
+
+
+  bool fever = false;
+  bool allergic = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,6 +49,7 @@ class _ReportIssueState extends State<ReportIssue> {
               padding: const EdgeInsets.all(8.0),
               child: Container(
                 child: TextFormField(
+                  controller: name,
                   decoration: InputDecoration(
                     prefixIcon: Icon(Icons.supervised_user_circle_sharp),
                     alignLabelWithHint: true,
@@ -45,11 +68,13 @@ class _ReportIssueState extends State<ReportIssue> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
+
                 child: TextFormField(
+                  controller: age,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     alignLabelWithHint: true,
-                    prefixIcon: Icon(Icons.call),
+                    prefixIcon: Icon(Icons.broken_image),
                     fillColor: Colors.white,
                     filled: true,
                     border: OutlineInputBorder(
@@ -57,15 +82,57 @@ class _ReportIssueState extends State<ReportIssue> {
                         Radius.circular(12),
                       ),
                     ),
-                    labelText: 'Contact No.',
+                    labelText: 'Age',
                   ),
                 ),
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Icon(Icons.opacity),
+                  Text('Pain Severity',style: TextStyle(
+                    fontSize: 15,
+                  ),),
+                  SizedBox(width: 20,),
+                  DropdownButton(
+                    hint: Text('Select Pain Severity',style: TextStyle(
+                      fontSize: 15,
+                    ),),
+                    value: painSeverity,
+                    onChanged: (value) {
+                      setState(() {
+                        painSeverity = value;
+                      });
+                    },
+                    items: [
+                      DropdownMenuItem(child:
+                      Text('Low Pain',style: TextStyle(
+                    fontSize: 15,
+                  ),),
+                      value: 'Low',),
+                      DropdownMenuItem(child:
+                      Text('Medium Pain',style: TextStyle(
+                      fontSize: 15,
+                      ),),
+                      value: 'Medium',),
+                      DropdownMenuItem(child:
+                      Text('High Pain',style: TextStyle(
+    fontSize: 15,
+    ),),
+                      value: 'High',),
+                    ],
+                  ),
+                ],
+              )
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
               child: Container(
                 child: TextFormField(
+
+                  controller: aadharNumber,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     alignLabelWithHint: true,
@@ -86,27 +153,7 @@ class _ReportIssueState extends State<ReportIssue> {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                child: TextFormField(
-                  minLines: 1,
-                  maxLines: 20,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    alignLabelWithHint: true,
-                    fillColor: Colors.white,
-                    filled: true,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(12),
-                      ),
-                    ),
-                    labelText: 'Description',
-                  ),
-                ),
-              ),
-            ),
+
             Text(
               'Symptoms',
               style: TextStyle(
@@ -126,10 +173,10 @@ class _ReportIssueState extends State<ReportIssue> {
                     ),
                     Checkbox(
                       activeColor: Color(0xff02AE8B),
-                      value: aVal,
+                      value: fever,
                       onChanged: (bool value) {
                         setState(() {
-                          aVal = value;
+                          fever = value;
                         });
                       },
                     ),
@@ -139,15 +186,15 @@ class _ReportIssueState extends State<ReportIssue> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text(
-                  "Alergic",
+                  "Allergic",
                   style: TextStyle(fontSize: 20),
                 ),
                 Checkbox(
                   activeColor: Color(0xff02AE8B),
-                  value: bVal,
+                  value: allergic,
                   onChanged: (bool value) {
                     setState(() {
-                      bVal = value;
+                      allergic = value;
                     });
                   },
                 ),
@@ -155,55 +202,17 @@ class _ReportIssueState extends State<ReportIssue> {
             ),
               ],
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      "Cough",
-                      style: TextStyle(fontSize: 20),
-                    ),
-                    Checkbox(
-                      activeColor: Color(0xff02AE8B),
-                      value: cVal,
-                      onChanged: (bool value) {
-                        setState(() {
-                          cVal = value;
-                        });
-                      },
-                    ),
-                  ],
-                ),
-                  Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  "Others",
-                  style: TextStyle(fontSize: 20),
-                ),
-                Checkbox(
-                  activeColor: Color(0xff02AE8B),
-                  value: dVal,
-                  onChanged: (bool value) {
-                    setState(() {
-                      dVal = value;
-                    });
-                  },
-                ),
-              ],
-            ),
-              ],
-            ),
+
             Text('If any other symptoms',style: TextStyle(fontSize: 17,fontWeight: FontWeight.w400),),
                         Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
                 child: TextFormField(
+
+                  controller: description,
                   minLines: 1,
                   maxLines: 20,
-                  keyboardType: TextInputType.number,
+                  keyboardType: TextInputType.text,
                   decoration: InputDecoration(
                     alignLabelWithHint: true,
                     fillColor: Colors.white,
@@ -213,29 +222,56 @@ class _ReportIssueState extends State<ReportIssue> {
                         Radius.circular(12),
                       ),
                     ),
-                    labelText: 'Mention symptoms',
+                    labelText: 'Give Brief Description About Symptoms',
                   ),
                 ),
               ),
             ),
             MaterialButton(
-              onPressed: () {
-                showDialog(
-                    context: context,
-                    builder: (context) {
-                      return Dialog(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Container(
-                          height: 200,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [Text('Your report has been submitted!')],
+              onPressed: () async{
+                try {
+                  var url = 'http://192.168.1.6:8000/api1/';
+                  String username = 'admin',
+                      password = 'admin';
+                  String basicAuth = 'Basic ' +
+                      base64Encode(utf8.encode('$username:$password'));
+
+                  Map data = {
+                    "aadhar_number": aadharNumber.text.toString(),
+                    "name": name.text.toString(),
+                    "age": age.text.toString(),
+                    "description": description.text.toString(),
+                    "Fever": fever,
+                    "Pain_Severity": painSeverity,
+                    "Any_allergies": allergic,
+                  };
+                  final response = await http.post(
+                      url, headers: {
+                    'authorization': basicAuth,
+                    "Content-Type": "application/json"
+                  }, body: json.encode(data));
+                  print(response.body);
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return Dialog(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
                           ),
-                        ),
-                      );
-                    });
+                          child: Container(
+                            height: 200,
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text('Your report has been submitted!')
+                              ],
+                            ),
+                          ),
+                        );
+                      });
+                }catch(e){
+                  print(e);
+                }
               },
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12)),

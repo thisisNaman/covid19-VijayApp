@@ -62,31 +62,25 @@ class DisplayVaccinationStatus extends StatelessWidget {
                 fontSize: 18.0,
                 fontWeight: FontWeight.bold),
           )),
-          ListTile(
-              title: Text(
-            'IsAtRisk: ${dataFetched['isatRisk']}',
-            style: GoogleFonts.varelaRound(
-                foreground: Paint()..shader = linearGradient,
-                fontSize: 18.0,
-                fontWeight: FontWeight.bold),
-          )),
-          if ('${dataFetched['isVaccinated']}' == false.toString())
-            ListTile(
-                title: Text(
-              'Date of Vaccination: ${dataFetched['dateofvaccination']}',
-              style: GoogleFonts.varelaRound(
-                  foreground: Paint()..shader = linearGradient,
-                  fontSize: 18.0,
-                  fontWeight: FontWeight.bold),
-            )),
-          ListTile(
-              title: Text(
-            'IsVaccinated: ${dataFetched['isVaccinated']}',
-            style: GoogleFonts.varelaRound(
-                foreground: Paint()..shader = linearGradient,
-                fontSize: 18.0,
-                fontWeight: FontWeight.bold),
-          )),
+          dataFetched['isVaccinated']
+              ? ListTile(
+                  title: Center(
+                  child: Text(
+                    'You are Vaccinated',
+                    style: GoogleFonts.varelaRound(
+                        foreground: Paint()..shader = linearGradient,
+                        fontSize: 25.0,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ))
+              : ListTile(
+                  title: Text(
+                  'Date of Vaccination: ${dataFetched['dateofvaccination']}',
+                  style: GoogleFonts.varelaRound(
+                      foreground: Paint()..shader = linearGradient,
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold),
+                )),
         ],
       ),
     );
