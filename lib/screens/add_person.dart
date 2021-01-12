@@ -265,23 +265,8 @@ TextEditingController name,age,occupation,area,zone;
                 else {
                   result = response.reasonPhrase;
                 }
-
-                showDialog(
-                    context: context,
-                    builder: (context) {
-                      return Dialog(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Container(
-                          height: 200,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [Text(result)],
-                          ),
-                        ),
-                      );
-                    });
+                final snackbar = SnackBar(content: Text(result));
+                ScaffoldMessenger.of(context).showSnackBar(snackbar);
               },
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12)),

@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: 
-       Admin(),
+       Onboarding(),
       debugShowCheckedModeBanner: false,
       routes: {
         DisplayVaccinationStatus.routeName: (context)=>DisplayVaccinationStatus(),

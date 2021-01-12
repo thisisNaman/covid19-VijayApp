@@ -188,6 +188,7 @@ class _VaccinesDispatchedState extends State<VaccinesDispatched> {
 
                  MaterialButton(
                 onPressed: () async {
+                  var result;
                   try {
                     var url = 'http://192.168.1.6:8000/api2/';
                     String username = 'admin',
@@ -207,29 +208,15 @@ class _VaccinesDispatchedState extends State<VaccinesDispatched> {
                       "Content-Type": "application/json"
                     }, body: json.encode(data));
                     print(response.body);
-                    showDialog(
-                        context: context,
-                        builder: (context) {
-                          return Dialog(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Container(
-                              height: 200,
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Text('Vaccine Dispatch Status Updated!')
-                                ],
-                              ),
-                            ),
-                          );
-                        });
+
+                   result = "Data Submitted! We Recommend you to Dispatch ${json.decode(response.body)["Success"]} Vaccines" ;
+                   print(result);
                   }catch(e)
                   {
-                    print(e);
+                    result = e.toString();
                   }
-
+                final snackbar = SnackBar(content: Text(result));
+                  ScaffoldMessenger.of(context).showSnackBar(snackbar);
                 },
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12)),
