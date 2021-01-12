@@ -49,7 +49,7 @@ class _AdminState extends State<Admin> {
         onPageChanged: onPageChanged,
         physics: NeverScrollableScrollPhysics(),
       ),
-      bottomNavigationBar: CupertinoTabBar(
+      bottomNavigationBar: CupertinoTabBar( 
         currentIndex: pageIndex,
         onTap: onTap,
         activeColor: Colors.black,

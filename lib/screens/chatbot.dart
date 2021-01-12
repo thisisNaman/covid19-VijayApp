@@ -26,7 +26,7 @@ class _HomePageDialogflow extends State<HomePageDialogflow> {
             new Flexible(
               child: new TextField(
                 controller: _textController,
-                onSubmitted: _handleSubmitted,
+                onSubmitted: _textController.text!=null?  _handleSubmitted:null,
                 decoration:
                     new InputDecoration.collapsed(hintText: "Send a message"),
               ),
@@ -35,7 +35,10 @@ class _HomePageDialogflow extends State<HomePageDialogflow> {
               margin: new EdgeInsets.symmetric(horizontal: 4.0),
               child: new IconButton(
                   icon: new Icon(Icons.send),
-                  onPressed: () => _handleSubmitted(_textController.text)),
+                  onPressed: () {
+                    _textController.text.isEmpty ?null: _handleSubmitted(_textController.text);
+                    print(_textController.text);
+                  }),
             ),
           ],
         ),
@@ -80,7 +83,7 @@ class _HomePageDialogflow extends State<HomePageDialogflow> {
     return new Scaffold(
       appBar: new AppBar(
         centerTitle: true,
-        title: new Text("Flutter and Dialogflow"),
+        title: new Text("Help"),
       ),
       body: new Column(children: <Widget>[
         new Flexible(
