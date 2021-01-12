@@ -1,8 +1,9 @@
 import 'package:covid_vijay_app/screens/admin_login.dart';
 import 'package:covid_vijay_app/services/auth.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:flutter/material.dart';
-import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:google_fonts/google_fonts.dart';
+
 import '../constants.dart';
 
 class AdminDashboard extends StatefulWidget {
@@ -166,75 +167,19 @@ class _AdminDashboardState extends State<AdminDashboard> {
                     fontWeight: FontWeight.bold),
               ),
             ),
-      ]
-    ),
-    ),
-    );
-  }
-}
-
         
 
-class SimpleLineChart extends StatelessWidget {
-    final List<charts.Series> seriesList;
-    final bool animate;
+            SizedBox(
+              height: 50,
+            ),
 
-    SimpleLineChart(this.seriesList, {this.animate});
-
-    /// Creates a [LineChart] with sample data and no transition.
-    factory SimpleLineChart.withSampleData() {
-    return new SimpleLineChart(
-    _createSampleData(),
-    // Disable animations for image tests.
-    animate: false,
+          ],
+        ),
+      ),
+      
     );
   }
-
-
-  @override
-  Widget build(BuildContext context) {
-    return new charts.LineChart(seriesList, animate: animate);
-  }
-
-  /// Create one series with sample hard coded data.
-  static List<charts.Series<LinearSales, int>> _createSampleData() {
-    final data = [
-      new LinearSales(0, 5),
-      new LinearSales(1, 25),
-      new LinearSales(2, 100),
-      new LinearSales(3, 75),
-    ];
-
-    return [
-      new charts.Series<LinearSales, int>(
-        id: 'Sales',
-        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
-        domainFn: (LinearSales sales, _) => sales.year,
-        measureFn: (LinearSales sales, _) => sales.sales,
-        data: data,
-      )
-    ];
-  }
 }
-
-/// Sample linear data type.
-class LinearSales {
-  final int year;
-  final int sales;
-
-  LinearSales(this.year, this.sales);
-}
-//            SizedBox(
-//              height: 50,
-//            ),
-//
-//          ],
-//        ),
-//      ),
-//
-//    );
-//  }
-//}
 
 // void _showAlert(BuildContext context, String text) {
 //   showDialog(
