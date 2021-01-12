@@ -160,18 +160,24 @@ class _UpdateVaccinationStatusState extends State<UpdateVaccinationStatus> {
                                 ),
                               );
                             });
+                        return;
                       }
                       requiredata["isVaccinated"] = true;
                     } catch (e) {
                       //_showAlert(context, 'Invalid number');
                     }
+
+                    final snackbar1 = SnackBar(content: Text('Person Successfully Vaccinated!'));
+                    final snackbar2 = SnackBar(content: Text('There was some error'));
                     try {
                       response = await http.put(url,
                           headers: {'Content-type': 'application/json','authorization':basicAuth},
                           body: json.encode(requiredata));
                       print(response.body);
+                      ScaffoldMessenger.of(context).showSnackBar(snackbar1);
                     } catch (e) {
                       // _showAlert(context, e);
+                      ScaffoldMessenger.of(context).showSnackBar(snackbar2);
                     }
                     Navigator.of(context).pop();
                   },
