@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dialogflow/dialogflow_v2.dart';
-
+import 'package:covid_vijay_app/constants.dart';
 
 
 class HomePageDialogflow extends StatefulWidget {
@@ -69,7 +69,7 @@ class _HomePageDialogflow extends State<HomePageDialogflow> {
     _textController.clear();
     ChatMessage message = new ChatMessage(
       text: text,
-      name: "Promise",
+      name: "Me",
       type: true,
     );
     setState(() {
@@ -80,25 +80,39 @@ class _HomePageDialogflow extends State<HomePageDialogflow> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        centerTitle: true,
-        title: new Text("Help"),
-      ),
-      body: new Column(children: <Widget>[
-        new Flexible(
-            child: new ListView.builder(
-          padding: new EdgeInsets.all(8.0),
-          reverse: true,
-          itemBuilder: (_, int index) => _messages[index],
-          itemCount: _messages.length,
-        )),
-        new Divider(height: 1.0),
-        new Container(
-          decoration: new BoxDecoration(color: Theme.of(context).cardColor),
-          child: _buildTextComposer(),
+    return SafeArea(
+      child: new Scaffold(
+        appBar: new AppBar(
+          toolbarHeight: 80,
+          backgroundColor: Colors.white,
+          elevation: 0,
+          flexibleSpace: Container(
+            margin: EdgeInsets.all(9.0),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8.0),
+                gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: <Color>[g1, g2])),
+          ),
+          centerTitle: true,
+          title: new Text("Help"),
         ),
-      ]),
+        body: new Column(children: <Widget>[
+          new Flexible(
+              child: new ListView.builder(
+            padding: new EdgeInsets.all(8.0),
+            reverse: true,
+            itemBuilder: (_, int index) => _messages[index],
+            itemCount: _messages.length,
+          )),
+          new Divider(height: 1.0),
+          new Container(
+            decoration: new BoxDecoration(color: Theme.of(context).cardColor),
+            child: _buildTextComposer(),
+          ),
+        ]),
+      ),
     );
   }
 }
