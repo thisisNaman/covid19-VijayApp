@@ -1,12 +1,1 @@
-{
-  "type": "service_account",
-  "project_id": "covid-vijay-app",
-  "private_key_id": "571470b653cfbe8a9492114c1d4f564fe2c92dbf",
-  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCU3NDLiMW5yGFL\nQDmQOyES07fSDkU/PhpVd51mldli+bIDemo1uFKYzlXDYu3Ce6UG6JmqfLeCGnkD\nNOJMuL+6j+vcV2f94Ry1JbqynWTFTWJc1evM6K3g3omlsQUN0u9JwVrALld+35np\nduvXaVdfJfibP9jrg4W/wv5Wg5dDm9KItA+UHWYNn54KyFVMewN5nFdZHhGOTX1h\nNhyhrF0vJOAokmUSp4jG1AADmRLGMYPQ71oDhdtE22Rp/y3dbQlDw+Juejl1R5Fo\n8D/OuIAlcZ7MjI3gNhKcEKBWgpo8WSnHAG6BuOXcEobQkmiy7xsrqoS8ziO2tsTO\nrp5Oid5PAgMBAAECggEAATbjt0oQafAdyLnJWMkcHY0lM+AFVxHbgyPOfr4pn6pR\ndji+UeVIwvsxHmRo3TO393bBfXbcS+tcbUByT+/rFLxfA+vsvauJO8WOnOJM4s2G\nooxOzpCb2R5QHUaw8+w2UB71KezJrogr3Pls2/HnDoLkfvXay1oCVBX7kCJpoTP3\nzYyDoEcA21/TIKU/Y0vj1GcQkgUzB9PPvj6BqolfMvamNzbl6iMOT24V0p5znLN1\nO6daPBokANUnvPn/7ueRNQUtdtdHUJZYnMWcs0a5Me0ApS2x3Cu7kyBBQgD1yKmj\ndJj0JyZkQJ4PysawZJTFx8CzGvHx/35niuzTRWoqkQKBgQDMQj4LF2ObnwdLg5KK\n8TyV1ozB8tu+FVnYPFsiKJORUX0SoI+7he6x5PRjkynn5P3OEbzvp1w5zVsMjOXR\na+ckpfUXydMWY7n1JiGiL75Lw7mXbKfCFa8h9duwnfTDdPzOhwMVZCwoAEYT8g3O\nkY97lQVs+Iv3xYKXQrk7CBWApwKBgQC6kj6WdVOYyrWLK4T6HmnMudAquPrfePFf\nRA5slKcwXsjIquGz5eGbTddZoWVlXRH/r2zijTeFvHXKEdamraSYxBkkmKLzQDB0\nYLl2WtaaQb2OvOAojKwvPsdT+vpETKo8J4r5Ifbufy31zkLdy934vExajJQTw0UI\nJ1CF8fkCGQKBgHoeSJW9ABJ0e5oMKbrkC4LR6QmztujoPvTm8N11QPSqsYpHcGd+\n5Xx6FBrMS0uXPp7LQBhQCPWN7xeLzYLtbh4dEnGMeqVyLiWBDK64uJ73f6gmkA2b\nhT9ajGQFq+aHtPWNBqztXPD1aPBX0SVlJVGPgNTrrFMQRMlGXRQL+z8VAoGBALU6\nUal9FlMYtPgWsfjzifnflKGrRaXFqVDMnuZCD5UgvRCPTOaeqmNdXY4nBINNwKoJ\nEU+PtRsnUZOTeFo32ea6tWGjEsYO2AJz4jNhUYxNx3/bYDKDUs4hwSWGaYvmnIYK\nMyiFIYPR7icS0Ej6OwfegJyEaWI5D9k3tzQlM6ghAoGAcGKt5b5JeNDi8vldTjoy\nqdZm4QN6DHcyfYad9GqJskE7iO+xQLv6yZD1uGHYnVRdJVYukNCACcld3aMgQt8r\n/WpMa4zVGoToBIT+4PNvqYfMwHH9s1AdbRGDucrY/ksZkwp521t/DzIhAIix7+Qd\nEUgbEtyruha7nNd/6/X+4DY=\n-----END PRIVATE KEY-----\n",
-  "client_email": "tutorial@covid-vijay-app.iam.gserviceaccount.com",
-  "client_id": "113912301477352757643",
-  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-  "token_uri": "https://oauth2.googleapis.com/token",
-  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/tutorial%40covid-vijay-app.iam.gserviceaccount.com"
-}
+
