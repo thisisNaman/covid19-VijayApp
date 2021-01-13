@@ -104,7 +104,6 @@ class _AdminLoginState extends State<AdminLogin> {
                 child: TextFormField(
                   controller: _textEditingController,
                   onChanged: (val) {
-                    
                     password = val;
                   },
                   keyboardType: TextInputType.emailAddress,
@@ -159,12 +158,7 @@ class _AdminLoginState extends State<AdminLogin> {
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => Admin(
-                              // dataMap: {
-                              //   "vaccinated": vaccinated,
-                              //   "notvaccinated": notvaccinated,
-                              // },
-                            ),
+                            builder: (context) => Admin(),
                           ));
                     }
                   },
@@ -235,7 +229,6 @@ class _AdminLoginState extends State<AdminLogin> {
           ),
         ]),
       ]),
-      
     );
   }
 }

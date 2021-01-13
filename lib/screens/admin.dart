@@ -49,19 +49,17 @@ class _AdminState extends State<Admin> {
         onPageChanged: onPageChanged,
         physics: NeverScrollableScrollPhysics(),
       ),
-      bottomNavigationBar: CupertinoTabBar( 
+      bottomNavigationBar: CupertinoTabBar(
+        backgroundColor: Colors.white,
+        border: Border.all(color: Colors.white),
+        iconSize: 30.0,
         currentIndex: pageIndex,
         onTap: onTap,
         activeColor: Colors.black,
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home)),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.update_outlined),
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(
-            Icons.add_a_photo,
-          )),
+          BottomNavigationBarItem(icon: Icon(Icons.update_outlined)),
+          BottomNavigationBarItem(icon: Icon(Icons.person_add)),
           BottomNavigationBarItem(icon: Icon(Icons.track_changes)),
           BottomNavigationBarItem(icon: Icon(Icons.help)),
         ],
