@@ -13,13 +13,13 @@ Show some love 💙 and Star ⭐️ the Repository to support the project.
 
 |                 Onboarding Screen                 |                 Admin Login                       |                    Admin Dashboard                |
 |:-------------------------------------------------:|:-------------------------------------------------:|:-------------------------------------------------:|
-| <img width="1604" src="./screenshots/onboarding.jpeg"> | <img width="1604" src="./screenshots/admin-login.jpeg"> | <img width="1604" height="515" src="./screenshots/admin_dashboard.jpeg"> |
+| <img width="1604" src="./screenshots/onboarding.jpeg"> | <img width="1604" src="./screenshots/admin-login.jpeg"> | <img width="1604" height="510" src="./screenshots/admin_dashboard.jpeg"> |
 
 ## What’s In This Document
 
 - [Get Up and Running in 5 Minutes](#rocket-get-up-and-running-in-5-minutes)
 - [Flutter / Dart Packages Used](#ballot_box-flutter--dart-packages-used)
-- [Project Video](#▶)
+- [Project Video](#-project-video)
 - [Thanks to Contributors and Sponsors](#blue_heart-thanks)
 
 ## :rocket: Get Up and Running in 5 Minutes
