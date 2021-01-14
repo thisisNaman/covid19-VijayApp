@@ -13,7 +13,7 @@ Show some love 💙 and Star ⭐️ the Repository to support the project.
 
 |                 Onboarding Screen                 |                 Admin Login                       |                    Admin Dashboard                |
 |:-------------------------------------------------:|:-------------------------------------------------:|:-------------------------------------------------:|
-| <img width="1604" src="./screenshots/onboarding.jpeg"> | <img width="1604" src="./screenshots/admin-login.jpeg"> | <img width="1604" src="./screenshots/admin-dashboard.jpeg"> |
+| <img width="1604" src="./screenshots/onboarding.jpeg"> | <img width="1604" src="./screenshots/admin-login.jpeg"> | <img width="1604" src="./screenshots/admin_dashboard.jpeg"> |
 
 ## What’s In This Document
 
