@@ -8,7 +8,7 @@
 </p>
 <hr style="width:50%;text-align:left;margin-left:0">
 <p align="center">
-Show some love 💜 and Star ⭐️ the Repository to support the project.
+Show some love 💙 and Star ⭐️ the Repository to support the project.
 </p>
 
 |                 Onboarding Screen                 |                 Admin Login                       |                    Admin Dashboard                |
@@ -55,8 +55,14 @@ At this point, you’ve got the fully functional Covid19-Vijay App running. For 
 | cloud_firestore     	|      latest     	| [Open on pub.dev](https://pub.dev/packages/cloud_firestore)         |
 | google_fonts 	|      latest     	| [Open on pub.dev](https://pub.dev/packages/google_fonts) 	|
 | pie_chart          	|      latest     	| [Open on pub.dev](https://pub.dev/packages/pie_chart)             |
+| fl_chart          	|      latest     	| [Open on pub.dev](https://pub.dev/packages/fl_chart)             |
+| flutter_dialogflow          	|      latest     	| [Open on pub.dev](https://pub.dev/packages/flutter_dialogflow)             |
+| bubble          	|      latest     	| [Open on pub.dev](https://pub.dev/packages/bubble)             |
+| image_picker          	|      latest     	| [Open on pub.dev](https://pub.dev/packages/image_picker)             |
+| http          	|      latest     	| [Open on pub.dev](https://pub.dev/packages/http)             |
+| charts_flutter          	|      latest     	| [Open on pub.dev](https://pub.dev/packages/charts_flutter)             |
 
 
-## :purple_heart: Thanks
+## :blue_heart: Thanks
 
-Thanks to all contributors and to sponsors for supporting the project.
+Thanks to all contributors for supporting the project.
