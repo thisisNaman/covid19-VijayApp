@@ -8,9 +8,8 @@ class ReportIssue extends StatefulWidget {
 }
 
 class _ReportIssueState extends State<ReportIssue> {
-
   String painSeverity;
-  TextEditingController name,aadharNumber,description,age;
+  TextEditingController name, aadharNumber, description, age;
 
   @override
   void initState() {
@@ -23,12 +22,11 @@ class _ReportIssueState extends State<ReportIssue> {
 
   @override
   void dispose() {
-   name.dispose();
-   aadharNumber.dispose();
-   description.dispose();
+    name.dispose();
+    aadharNumber.dispose();
+    description.dispose();
     super.dispose();
   }
-
 
   bool fever = false;
   bool allergic = false;
@@ -68,7 +66,6 @@ class _ReportIssueState extends State<ReportIssue> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
-
                 child: TextFormField(
                   controller: age,
                   keyboardType: TextInputType.number,
@@ -88,50 +85,68 @@ class _ReportIssueState extends State<ReportIssue> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  Icon(Icons.opacity),
-                  Text('Pain Severity',style: TextStyle(
-                    fontSize: 15,
-                  ),),
-                  SizedBox(width: 20,),
-                  DropdownButton(
-                    hint: Text('Select Pain Severity',style: TextStyle(
-                      fontSize: 15,
-                    ),),
-                    value: painSeverity,
-                    onChanged: (value) {
-                      setState(() {
-                        painSeverity = value;
-                      });
-                    },
-                    items: [
-                      DropdownMenuItem(child:
-                      Text('Low Pain',style: TextStyle(
-                    fontSize: 15,
-                  ),),
-                      value: 'Low',),
-                      DropdownMenuItem(child:
-                      Text('Medium Pain',style: TextStyle(
-                      fontSize: 15,
-                      ),),
-                      value: 'Medium',),
-                      DropdownMenuItem(child:
-                      Text('High Pain',style: TextStyle(
-    fontSize: 15,
-    ),),
-                      value: 'High',),
-                    ],
-                  ),
-                ],
-              )
-            ),
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Icon(Icons.opacity),
+                    Text(
+                      'Pain Severity',
+                      style: TextStyle(
+                        fontSize: 15,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    DropdownButton(
+                      hint: Text(
+                        'Select Pain Severity',
+                        style: TextStyle(
+                          fontSize: 15,
+                        ),
+                      ),
+                      value: painSeverity,
+                      onChanged: (value) {
+                        setState(() {
+                          painSeverity = value;
+                        });
+                      },
+                      items: [
+                        DropdownMenuItem(
+                          child: Text(
+                            'Low Pain',
+                            style: TextStyle(
+                              fontSize: 15,
+                            ),
+                          ),
+                          value: 'Low',
+                        ),
+                        DropdownMenuItem(
+                          child: Text(
+                            'Medium Pain',
+                            style: TextStyle(
+                              fontSize: 15,
+                            ),
+                          ),
+                          value: 'Medium',
+                        ),
+                        DropdownMenuItem(
+                          child: Text(
+                            'High Pain',
+                            style: TextStyle(
+                              fontSize: 15,
+                            ),
+                          ),
+                          value: 'High',
+                        ),
+                      ],
+                    ),
+                  ],
+                )),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
                 child: TextFormField(
-
                   controller: aadharNumber,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
@@ -153,7 +168,6 @@ class _ReportIssueState extends State<ReportIssue> {
                 ),
               ),
             ),
-
             Text(
               'Symptoms',
               style: TextStyle(
@@ -182,29 +196,31 @@ class _ReportIssueState extends State<ReportIssue> {
                     ),
                   ],
                 ),
-                  Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  "Allergic",
-                  style: TextStyle(fontSize: 20),
-                ),
-                Checkbox(
-                  activeColor: Color(0xff02AE8B),
-                  value: allergic,
-                  onChanged: (bool value) {
-                    setState(() {
-                      allergic = value;
-                    });
-                  },
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      "Allergic",
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    Checkbox(
+                      activeColor: Color(0xff02AE8B),
+                      value: allergic,
+                      onChanged: (bool value) {
+                        setState(() {
+                          allergic = value;
+                        });
+                      },
+                    ),
+                  ],
                 ),
               ],
             ),
-              ],
+            Text(
+              'If any other symptoms',
+              style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400),
             ),
-
-            Text('If any other symptoms',style: TextStyle(fontSize: 17,fontWeight: FontWeight.w400),),
-                        Padding(
+            Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
                 child: TextFormField(
@@ -227,11 +243,10 @@ class _ReportIssueState extends State<ReportIssue> {
               ),
             ),
             MaterialButton(
-              onPressed: () async{
+              onPressed: () async {
                 try {
                   var url = 'http://192.168.1.6:8000/api1/';
-                  String username = 'admin',
-                      password = 'admin';
+                  String username = 'admin', password = 'admin';
                   String basicAuth = 'Basic ' +
                       base64Encode(utf8.encode('$username:$password'));
 
@@ -244,17 +259,19 @@ class _ReportIssueState extends State<ReportIssue> {
                     "Pain_Severity": painSeverity,
                     "Any_allergies": allergic,
                   };
-                  final response = await http.post(
-                      url, headers: {
-                    'authorization': basicAuth,
-                    "Content-Type": "application/json"
-                  }, body: json.encode(data));
+                  final response = await http.post(url,
+                      headers: {
+                        'authorization': basicAuth,
+                        "Content-Type": "application/json"
+                      },
+                      body: json.encode(data));
                   print(response.body);
+
                   final snackBar = SnackBar(
-                      content: Text('Your report has been submitted!'),
+                    content: Text('Your report has been submitted!'),
                   );
                   ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                }catch(e){
+                } catch (e) {
                   print(e);
                 }
               },
