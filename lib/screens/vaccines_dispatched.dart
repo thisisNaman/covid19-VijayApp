@@ -145,7 +145,8 @@ class _VaccinesDispatchedState extends State<VaccinesDispatched> {
                     ),
                   ),
                 ),
-              ),Padding(
+              ),
+              Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
                   children: [
