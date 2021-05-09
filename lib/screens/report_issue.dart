@@ -266,24 +266,11 @@ class _ReportIssueState extends State<ReportIssue> {
                       },
                       body: json.encode(data));
                   print(response.body);
-                  showDialog(
-                      context: context,
-                      builder: (context) {
-                        return Dialog(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Container(
-                            height: 200,
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text('Your report has been submitted!')
-                              ],
-                            ),
-                          ),
-                        );
-                      });
+
+                  final snackBar = SnackBar(
+                    content: Text('Your report has been submitted!'),
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 } catch (e) {
                   print(e);
                 }

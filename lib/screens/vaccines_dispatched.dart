@@ -10,12 +10,13 @@ class VaccinesDispatched extends StatefulWidget {
 }
 
 class _VaccinesDispatchedState extends State<VaccinesDispatched> {
-
-  TextEditingController vaccines_dispatched,vaccines_usable,temperature,humidity;
+  TextEditingController vaccines_dispatched,
+      vaccines_usable,
+      temperature,
+      humidity;
 
   @override
-  void initState()
-  {
+  void initState() {
     vaccines_dispatched = TextEditingController();
     vaccines_usable = TextEditingController();
     temperature = TextEditingController();
@@ -23,10 +24,8 @@ class _VaccinesDispatchedState extends State<VaccinesDispatched> {
     super.initState();
   }
 
-
   @override
-  void dispose()
-  {
+  void dispose() {
     vaccines_usable.dispose();
     vaccines_dispatched.dispose();
     temperature.dispose();
@@ -37,16 +36,28 @@ class _VaccinesDispatchedState extends State<VaccinesDispatched> {
   String trafficDensity;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Vaccine Logistics Information'),
-        centerTitle: true,
-        elevation: 0,
-      ),
-      body: SingleChildScrollView(
-              child: Column(
-          children: [
-            Container(
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          toolbarHeight: 80,
+          backgroundColor: Colors.white,
+          elevation: 0,
+          flexibleSpace: Container(
+            margin: EdgeInsets.all(9.0),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8.0),
+                gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: <Color>[g1, g2])),
+          ),
+          title: Text('Vaccine Logistics Information'),
+          centerTitle: true,
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(20.0),
@@ -104,7 +115,7 @@ class _VaccinesDispatchedState extends State<VaccinesDispatched> {
                   ),
                 ),
               ),
-                   Padding(
+              Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
                   child: TextFormField(
@@ -125,7 +136,7 @@ class _VaccinesDispatchedState extends State<VaccinesDispatched> {
                   ),
                 ),
               ),
-                  Padding(
+              Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
                   child: TextFormField(
@@ -147,52 +158,70 @@ class _VaccinesDispatchedState extends State<VaccinesDispatched> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Icon(Icons.traffic),
-                    Text('Traffic Density',style: TextStyle(
-                      fontSize: 15,
-                    ),),
-                    SizedBox(width: 20,),
-                    DropdownButton(
-                      hint: Text('Select Traffic Density',style: TextStyle(
-                        fontSize: 15,
-                      ),),
-                      value: trafficDensity,
-                      onChanged: (value) {
-                        setState(() {
-                          trafficDensity = value;
-                        });
-                      },
-                      items: [
-                        DropdownMenuItem(child:
-                        Text('Low',style: TextStyle(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      Icon(Icons.traffic),
+                      Text(
+                        'Traffic Density',
+                        style: TextStyle(
                           fontSize: 15,
-                        ),),
-                          value: 'Low',),
-                        DropdownMenuItem(child:
-                        Text('Medium',style: TextStyle(
-                          fontSize: 15,
-                        ),),
-                          value: 'Medium',),
-                        DropdownMenuItem(child:
-                        Text('High',style: TextStyle(
-                          fontSize: 15,
-                        ),),
-                          value: 'High',),
-                      ],
-                    ),
-                  ],
-                )
-            ),
-
-                 MaterialButton(
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      DropdownButton(
+                        hint: Text(
+                          'Select Traffic Density',
+                          style: TextStyle(
+                            fontSize: 15,
+                          ),
+                        ),
+                        value: trafficDensity,
+                        onChanged: (value) {
+                          setState(() {
+                            trafficDensity = value;
+                          });
+                        },
+                        items: [
+                          DropdownMenuItem(
+                            child: Text(
+                              'Low',
+                              style: TextStyle(
+                                fontSize: 15,
+                              ),
+                            ),
+                            value: 'Low',
+                          ),
+                          DropdownMenuItem(
+                            child: Text(
+                              'Medium',
+                              style: TextStyle(
+                                fontSize: 15,
+                              ),
+                            ),
+                            value: 'Medium',
+                          ),
+                          DropdownMenuItem(
+                            child: Text(
+                              'High',
+                              style: TextStyle(
+                                fontSize: 15,
+                              ),
+                            ),
+                            value: 'High',
+                          ),
+                        ],
+                      ),
+                    ],
+                  )),
+              MaterialButton(
                 onPressed: () async {
+                  var result;
                   try {
                     var url = 'http://192.168.1.6:8000/api2/';
-                    String username = 'admin',
-                        password = 'admin';
+                    String username = 'admin', password = 'admin';
                     String basicAuth = 'Basic ' +
                         base64Encode(utf8.encode('$username:$password'));
                     Map data = {
@@ -202,35 +231,22 @@ class _VaccinesDispatchedState extends State<VaccinesDispatched> {
                       "Humidity": humidity.text,
                       "traffic_density": trafficDensity
                     };
-                    final response = await http.post(
-                        url, headers: {
-                      'authorization': basicAuth,
-                      "Content-Type": "application/json"
-                    }, body: json.encode(data));
+                    final response = await http.post(url,
+                        headers: {
+                          'authorization': basicAuth,
+                          "Content-Type": "application/json"
+                        },
+                        body: json.encode(data));
                     print(response.body);
-                    showDialog(
-                        context: context,
-                        builder: (context) {
-                          return Dialog(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Container(
-                              height: 200,
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Text('Vaccine Dispatch Status Updated!')
-                                ],
-                              ),
-                            ),
-                          );
-                        });
-                  }catch(e)
-                  {
-                    print(e);
-                  }
 
+                    result =
+                        "Data Submitted! We Recommend you to Dispatch ${json.decode(response.body)["Success"]} Vaccines";
+                    print(result);
+                  } catch (e) {
+                    result = e.toString();
+                  }
+                  final snackbar = SnackBar(content: Text(result));
+                  ScaffoldMessenger.of(context).showSnackBar(snackbar);
                 },
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12)),
@@ -240,7 +256,8 @@ class _VaccinesDispatchedState extends State<VaccinesDispatched> {
                 child: Text('Submit',
                     style: TextStyle(fontSize: 20, color: Colors.white)),
               )
-          ],
+            ],
+          ),
         ),
       ),
     );
