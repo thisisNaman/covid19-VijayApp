@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://github.com/Coder-Bhai/covid19-VijayApp">
+  <a href="https://github.com/thisisNaman/covid19-VijayApp">
     <img alt="Covid19-Vijay" src="./screenshots/header.jpg" width="100%" />
   </a>
 </p>
